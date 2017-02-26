@@ -1,2 +1,2 @@
 # WhatsApp
-UI of old WhatsApp
+UI of old (better) WhatsApp
