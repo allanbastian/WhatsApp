@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_name"
-        android:text="NAME"
-        android:textSize="30sp"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:layout_alignParentLeft="true"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_status"
-        android:text="Hey! I'm using WhatsApp"
-        android:layout_below="@+id/txt_name"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:orientation="horizontal">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/user_img"
+        app:srcCompat="@drawable/a"
+        android:id="@+id/listIcon"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/listText"
+        android:layout_alignTop="@+id/listText"
+        android:layout_alignBottom="@+id/des" />
 
-        android:layout_toLeftOf="@+id/txt_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/des"
+        android:textSize="15sp"
+        android:text="Status"
+        android:layout_below="@+id/listText"
+        android:layout_toEndOf="@+id/listIcon" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:id="@+id/listText"
+        android:text="NAME"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
