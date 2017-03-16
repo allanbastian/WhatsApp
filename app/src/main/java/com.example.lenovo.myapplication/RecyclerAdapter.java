@@ -1,50 +1,56 @@
-package com.example.lenovo.myapplication;
+package com.example.lenovo.whatsapp;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextClock;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by Lenovo on 26-02-2017.
- */
+import java.util.Collections;
+import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
-    String[] names, statuses;
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
 
-    public RecyclerViewAdapter(String[] names, String[] statuses) {
-        this.names = names;
-        this.statuses = statuses;
+    private LayoutInflater inflater;
+    List<Item> data= Collections.emptyList();
+    public RecyclerAdapter(Context context, List<Item> data){
+        inflater=LayoutInflater.from(context);
+        this.data=data;
     }
 
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
-
-        RecyclerViewHolder recyclerViewHolder = new RecyclerViewHolder(view);
-        return recyclerViewHolder;
+    public RecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view=inflater.inflate(R.layout.row_layout, parent,false);
+        MyViewHolder holder=new MyViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        holder.txt_name = setText(names[position]);
-        holder.txt_status = setText(statuses[position]);
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        Item current=data.get(position);
+        holder.title.setText(current.title);
+        holder.icon.setImageResource(current.iconid);
+        holder.descripts.setText(current.descript);
     }
 
     @Override
     public int getItemCount() {
-        return names.length;
+        return data.size();
     }
 
-    public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_name, txt_status;
-        public RecyclerViewHolder(View view) {
-            super(view);
-            txt_name = (TextView) view.findViewById(R.id.txt_name);
-            txt_status = (TextView) view.findViewById(R.id.txt_status);
+        TextView title;
+        ImageView icon;
+        TextView descripts;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            title= (TextView) itemView.findViewById(R.id.listText);
+            icon= (ImageView) itemView.findViewById(R.id.listIcon);
+            descripts= (TextView) itemView.findViewById(R.id.des);
         }
     }
 }
